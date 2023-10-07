@@ -77,7 +77,7 @@ class ParticipantLab:
             
             fileNames = [a.split('.')[0] for a in a_files]
             
-            m_files = [a + '.csv' for a in fileNames]
+            m_files = [a + '.tab' for a in fileNames]
             #m_files = sorted(os.listdir(self.m_folder_s1))
             #import pdb; pdb.set_trace()
             self.rawMdataX_s1 = np.zeros((0, int(self.win_size*old_sr), 6), dtype=np.float32)
@@ -91,7 +91,7 @@ class ParticipantLab:
                 a_matrix = librosa.util.frame(audio, win_audio, hop_length_audio)
                 #print(np.shape(audio),a_matrix.shape)
                 # Motion
-                motion = np.loadtxt(self.m_folder_s1 + m_files[index], delimiter=',')
+                motion = np.loadtxt(self.m_folder_s1 + m_files[index], delimiter='\t')
 
                 f_matrix = self.__rearrange(motion, win_motion, olp_motion)
                 f_matrix = f_matrix[:,:int(self.win_size*old_sr)+1,:]
@@ -124,7 +124,7 @@ class ParticipantLab:
             
             fileNames = [a.split('.')[0] for a in a_files]
             
-            m_files = [a + '.csv' for a in fileNames]
+            m_files = [a + '.tab' for a in fileNames]
              #sorted(os.listdir(self.m_folder_s2))
             self.rawMdataX_s2 = np.zeros((0, win_motion, 6), dtype=np.float32)
             self.rawAdataX_s2 = np.zeros((0, int(self.win_size*sr_audio)), dtype=np.float32)
@@ -139,7 +139,7 @@ class ParticipantLab:
                 a_matrix = librosa.util.frame(audio, win_audio, hop_length_audio)
 
                 # Motion
-                motion = np.loadtxt(self.m_folder_s2 + m_files[index], delimiter=',')
+                motion = np.loadtxt(self.m_folder_s2 + m_files[index], delimiter='\t')
                 f_matrix = self.__rearrange(motion, win_motion, olp_motion)
                 # Labelling and concat
                 a=np.shape(a_matrix)[-1]
