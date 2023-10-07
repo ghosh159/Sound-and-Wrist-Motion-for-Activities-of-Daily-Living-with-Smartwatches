@@ -32,7 +32,7 @@ import torch.optim as optim
 import torch.utils.data
 from torch.utils.data import DataLoader
 from torch.utils.data import TensorDataset
-os.environ["CUDA_VISIBLE_DEVICES"]="1"
+
 from utils_ import plotCNNStatistics
 import random
 torch.backends.cudnn.deterministic = True
